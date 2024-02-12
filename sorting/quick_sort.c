@@ -12,27 +12,19 @@
 
 #include "ft_sort.h"
 
-int	partitioning(int *arr, int start_index, int end_index)
+int partitioning(int *arr, int start_index, int end_index)
 {
-	int	i;
-	int	j;
-	int	pivot;
-
-	i = -1;
-	j = 0;
-	pivot = arr[end_index];
-	while (j < (end_index - 1))
-	{
-		if (arr[j] <= pivot)
-		{
-			i++;
-			ft_swap(&arr[j], &arr[i]);
-		}
-		j++;
-	}
-	i++;
-	ft_swap(&arr[i], &pivot);
-	return (i);
+    int i = start_index - 1;
+    int pivot = arr[end_index];
+    
+    for (int j = start_index; j <= end_index - 1; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            ft_swap(&arr[i], &arr[j]);
+        }
+    }
+    ft_swap(&arr[i + 1], &arr[end_index]);
+    return (i + 1);
 }
 
 void	quick_sort(int *arr, int start, int end)
